@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ColourAPI.Models;
 
 namespace ColourAPI.Controllers
 {
@@ -10,11 +11,17 @@ namespace ColourAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ColourContext _context;
+        public ValuesController(ColourContext context)
+        {
+            _context = context;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Colour>> GetColourItems()
         {
-            return new string[] { "value1", "value2" };
+            return _context.ColourItems;
         }
 
         // GET api/values/5

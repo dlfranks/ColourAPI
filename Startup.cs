@@ -35,7 +35,7 @@ namespace ColourAPI
 
             services.AddDbContext<ColourContext>(options =>
             {
-                options.UseSqlServer($"Server={server},{port}:Initial Catalog={database};User ID={user};Password={password}");
+                options.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID={user};Password={password}");
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -46,6 +46,8 @@ namespace ColourAPI
         {
 
             app.UseMvc();
+
+            PrepDB.PrePopulation(app);
         }
     }
 }
